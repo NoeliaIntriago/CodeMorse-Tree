@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VistaMorseController">
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="106.0" prefWidth="88.0" text="Ingrese palabra: " textAlignment="CENTER" />
+            <TextField fx:id="txtPalabra" promptText="Palabra a traducir">
+               <HBox.margin>
+                  <Insets top="40.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="btnTraducir" mnemonicParsing="false" onAction="#traducir" prefHeight="25.0" prefWidth="85.0" text="Traducir">
+               <HBox.margin>
+                  <Insets left="10.0" top="40.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnBorrar" mnemonicParsing="false" onAction="#borrarTexto" text="Borrar">
+               <HBox.margin>
+                  <Insets left="10.0" top="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <HBox fx:id="pane" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
