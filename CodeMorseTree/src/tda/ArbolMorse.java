@@ -5,6 +5,7 @@
  */
 package tda;
 
+import static codemorsetree.CodeMorseTree.codigos;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Queue;
  * @author Noelia Intriago
  */
 public class ArbolMorse {
-    private Node root;
+    private static Node root;
 
     public ArbolMorse() {
         this.root = new Node("");
@@ -77,7 +78,20 @@ public class ArbolMorse {
         n.data = letra;
     }
     
-    public String codificarMorse(List<String> codigos, ArbolMorse arbol){
+    public static LinkedList<String> codificarPalabra(String palabra){
+        return codificarPalabra(codigos, palabra, root);
+    }
+    
+    private static LinkedList<String> codificarPalabra(HashMap<String, String> morseCodes, String palabra, Node n){
+        LinkedList<String> traduccion = new LinkedList<>();
+        for(int i = 0; i < palabra.length(); i++){
+            String code = morseCodes.get(String.valueOf(palabra.charAt(i)));
+            traduccion.add(code);
+            traduccion.add(" ");
+        }
+        return traduccion;
+    }
+    /*public String codificarMorse(List<String> codigos, ArbolMorse arbol){
         return codificarMorse(codigos, arbol.root);
     }
     
@@ -103,7 +117,7 @@ public class ArbolMorse {
             } 
         }
         return resultado;
-    }
+    }*/
     
     public void anchura(){
         if(!isEmpty()){

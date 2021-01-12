@@ -5,7 +5,10 @@
  */
 package controlador;
 
+import static codemorsetree.CodeMorseTree.arbolMorse;
+import java.awt.Color;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
+import tda.ArbolMorse;
 
 /**
  * FXML Controller class
@@ -37,7 +43,18 @@ public class VistaMorseController implements Initializable {
     
     public void traducir(ActionEvent event){
         if(txtPalabra.getText().isEmpty()) mostrarAlerta("Campo vacío! Ingrese por lo menos un caracter!", Alert.AlertType.ERROR);
-        
+        else{
+            String palabra = txtPalabra.getText().toUpperCase();
+            System.out.println(palabra);
+            LinkedList<String> traduccion = ArbolMorse.codificarPalabra(palabra);
+            System.out.println(traduccion);
+        }
+    }
+    
+    public void dibujar(){
+        Line line = new Line();
+        line.setStroke(Paint.valueOf("red"));
+        pane.getChildren().add(line);
     }
     
     public void borrarTexto(ActionEvent event){
