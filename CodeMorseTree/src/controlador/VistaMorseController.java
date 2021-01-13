@@ -16,10 +16,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import tda.ArbolMorse;
+import tda.ArbolMorse.Node;
 
 /**
  * FXML Controller class
@@ -38,7 +43,10 @@ public class VistaMorseController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        System.out.println(pane.getWidth());
+        System.out.println(pane.getHeight());
+        ArbolMorseMuestra arbolMuestra = new ArbolMorseMuestra();
+        arbolMuestra.dibujar(pane);
     } 
     
     public void traducir(ActionEvent event){
@@ -51,11 +59,25 @@ public class VistaMorseController implements Initializable {
         }
     }
     
-    public void dibujar(){
-        Line line = new Line();
-        line.setStroke(Paint.valueOf("red"));
-        pane.getChildren().add(line);
+    /*public void dibujar(){
+        System.out.println(pane.getWidth());
+        System.out.println(pane.getHeight());
+        pane.setStyle("-fx-background-color: white;");
+        dibujarArbol(pane, pane.getWidth()/2, 20, ArbolMorse.getRoot());
+        /*Circle circle = new Circle(50, Paint.valueOf("BLUE"));
+        circle.relocate(20, 20);
+        Rectangle rectangle = new Rectangle(100,100, Paint.valueOf("RED"));
+        rectangle.relocate(70,70);
+        pane.getChildren().addAll(circle,rectangle);
     }
+    
+    private void dibujarArbol(Pane pane, double x, double y, Node n){
+        if(n != null){
+            Circle circle = new Circle(x, y, RADIO, Paint.valueOf("WHITE"));
+            circle.setStroke(Paint.valueOf("BLACK"));
+            pane.getChildren().addAll(circle, new Text(x - 4, y + 4, n.getData()));
+        }
+    }*/
     
     public void borrarTexto(ActionEvent event){
         txtPalabra.clear();

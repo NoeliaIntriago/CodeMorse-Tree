@@ -19,9 +19,12 @@ public class ArbolMorse {
     private static Node root;
 
     public ArbolMorse() {
-        this.root = new Node("");
+        ArbolMorse.root = new Node("");
     }
-    
+
+    public static Node getRoot() {
+        return root;
+    }
     
     /*Izquierdo: guion, Derecho: punto*/
     public class Node{
@@ -62,16 +65,16 @@ public class ArbolMorse {
         for(int i = 0; i < codigo.length(); i++){
             char c = codigo.charAt(i);
             if(c == '-'){
-                if(n.right != null) n = n.right;
-                else{
-                    n.right = new Node("");
-                    n = n.right;
-                }
-            }else if(c == '.'){
                 if(n.left != null) n = n.left;
                 else{
                     n.left = new Node("");
                     n = n.left;
+                }
+            }else if(c == '.'){
+                if(n.right != null) n = n.right;
+                else{
+                    n.right = new Node("");
+                    n = n.right;
                 }
             }
         }
