@@ -11,7 +11,6 @@ import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.shape.Circle;
 
 /**
  *
@@ -19,17 +18,18 @@ import javafx.scene.shape.Circle;
  */
 public class RecorridoCodigo implements Runnable{
 
-    public LinkedList<String> recorrido;
-    public Pane pane;
+    private LinkedList<String> recorrido;
+    private Pane pane;
     private double x;
     private double y;
-    public static final int DIAMETRO = 20;
-    public int ANCHO = 650;
-    public int ALTO = 60;
+    private int inicio;
+    private int ANCHO = 650;
+    private int ALTO = 60;
     
-    public RecorridoCodigo(LinkedList<String> recorrido, Pane pane){
+    public RecorridoCodigo(LinkedList<String> recorrido, Pane pane, int inicio){
         this.recorrido = recorrido;
         this.pane = pane;
+        this.inicio = inicio;
         this.x = ANCHO;
         this.y = 200;
     }
@@ -46,7 +46,7 @@ public class RecorridoCodigo implements Runnable{
     public void run() {
         Platform.runLater(new CreadorRecorrido(this.pane, x, y));
         try{
-            Thread.sleep(700);
+            Thread.sleep(500);
             Iterator<String> it = recorrido.iterator();
             while(it.hasNext()){
                 String code = it.next();
@@ -59,15 +59,14 @@ public class RecorridoCodigo implements Runnable{
                         Platform.runLater(new CreadorRecorrido(this.pane, x, y));
                     }else{
                         regresar();
-                        Platform.runLater(new CreadorRecorrido(this.pane, x, y));
                     }
+                    Thread.sleep(500);
                 }
-                
-                Thread.sleep(700);
             }
         }catch(InterruptedException ex){
             System.err.println(ex);
         }
+        limpiar();
     }
     
     private void irNodoDerecho(){
@@ -88,13 +87,15 @@ public class RecorridoCodigo implements Runnable{
         try{
             x = 650;
             y = 200;
-            Thread.sleep(700);
+            Thread.sleep(500);
         }catch(InterruptedException ex){
             System.err.println(ex);
         }
     }
     
-    
+    private void limpiar(){
+        Platform.runLater(() -> pane.getChildren().remove(inicio, pane.getChildren().size()));
+    }
     
     private void playSound(String audio) {
         Media sonido = new Media(this.getClass().getResource(audio).toExternalForm());

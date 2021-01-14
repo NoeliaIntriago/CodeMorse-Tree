@@ -5,8 +5,6 @@
  */
 package controlador;
 
-import static codemorsetree.CodeMorseTree.arbolMorse;
-import java.awt.Color;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -47,7 +45,7 @@ public class VistaMorseController implements Initializable {
             System.out.println(palabra);
             LinkedList<String> traduccion = ArbolMorse.codificarPalabra(palabra);
             System.out.println(traduccion);
-            Thread trace = new Thread(new RecorridoCodigo(traduccion, pane));
+            Thread trace = new Thread(new RecorridoCodigo(traduccion, pane, pane.getChildren().size()));
             trace.start();
         }
     }
