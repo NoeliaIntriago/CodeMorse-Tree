@@ -9,6 +9,7 @@ import static codemorsetree.CodeMorseTree.codigos;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -85,7 +86,7 @@ public class ArbolMorse {
         return codificarPalabra(codigos, palabra, root);
     }
     
-    private static LinkedList<String> codificarPalabra(HashMap<String, String> morseCodes, String palabra, Node n){
+    private static LinkedList<String> codificarPalabra(Map<String, String> morseCodes, String palabra, Node n){
         LinkedList<String> traduccion = new LinkedList<>();
         for(int i = 0; i < palabra.length(); i++){
             String code = morseCodes.get(String.valueOf(palabra.charAt(i)));
@@ -94,33 +95,6 @@ public class ArbolMorse {
         }
         return traduccion;
     }
-    /*public String codificarMorse(List<String> codigos, ArbolMorse arbol){
-        return codificarMorse(codigos, arbol.root);
-    }
-    
-    private String codificarMorse(List<String> codigos, Node n){
-        String resultado = "";
-        for(String cod: codigos){
-            if(cod.equals(".")){
-                if(n.right != null) n = n.right;
-                else{
-                    n.right = new Node("");
-                    n = n.right;
-                }
-            }else if(cod.equals("-")){
-                if(n.left != null)n = n.left;
-                else{
-                    n.left = new Node("");
-                    n = n.left;
-                }
-            }
-            if(!n.data.equals("")){
-                resultado += n.data;
-                n = root;
-            } 
-        }
-        return resultado;
-    }*/
     
     public void anchura(){
         if(!isEmpty()){

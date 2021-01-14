@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -25,12 +26,12 @@ import tda.ArbolMorse;
  */
 
 public class CodeMorseTree extends Application{
-    public static HashMap<String, String> codigos = new HashMap<>();
-    public static ArbolMorse arbolMorse = new ArbolMorse();
+    public static final Map<String, String> codigos = new HashMap<String, String>();
+    public static final ArbolMorse arbolMorse = new ArbolMorse();
     
     public static void main(String[] args) {
         leerArchivo();
-        arbolMorse.crearArbolMorse(codigos);
+        arbolMorse.crearArbolMorse((HashMap<String, String>) codigos);
         arbolMorse.anchura();
         launch();
     }
@@ -50,7 +51,7 @@ public class CodeMorseTree extends Application{
             }
         }catch(IOException e){
             System.err.println("Archivo no encontrado.");
-            System.err.println(e);
+            Logger.getLogger(CodeMorseTree.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
