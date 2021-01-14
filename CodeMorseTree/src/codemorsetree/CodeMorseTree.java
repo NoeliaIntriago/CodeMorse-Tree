@@ -26,7 +26,7 @@ import tda.ArbolMorse;
  */
 
 public class CodeMorseTree extends Application{
-    public static final Map<String, String> codigos = new HashMap<String, String>();
+    public static final Map<String, String> codigos = new HashMap<>();
     public static final ArbolMorse arbolMorse = new ArbolMorse();
     
     public static void main(String[] args) {
@@ -50,7 +50,6 @@ public class CodeMorseTree extends Application{
                 codigos.put(separado[0], clave.toString());
             }
         }catch(IOException e){
-            System.err.println("Archivo no encontrado.");
             Logger.getLogger(CodeMorseTree.class.getName()).log(Level.SEVERE, null, e);
         }
     }
