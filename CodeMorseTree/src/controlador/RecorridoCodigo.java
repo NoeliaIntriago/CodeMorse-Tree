@@ -5,8 +5,12 @@
  */
 package controlador;
 
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -23,15 +27,15 @@ public class RecorridoCodigo implements Runnable{
     private double x;
     private double y;
     private int inicio;
-    private double ANCHO = 650;
-    private double ALTO = 60;
-    private double cambio = ANCHO/2;
+    private double ancho = 650;
+    private double alto = 60;
+    private double cambio = ancho/2;
     
-    public RecorridoCodigo(LinkedList<String> recorrido, Pane pane, int inicio){
-        this.recorrido = recorrido;
+    public RecorridoCodigo(List<String> recorrido, Pane pane, int inicio){
+        this.recorrido = (LinkedList<String>) recorrido;
         this.pane = pane;
         this.inicio = inicio;
-        this.x = ANCHO;
+        this.x = ancho;
         this.y = 200;
     }
 
@@ -39,7 +43,7 @@ public class RecorridoCodigo implements Runnable{
         this.x = x;
     }
     
-    public LinkedList<String> getRecorrido() {
+    public List<String> getRecorrido() {
         return recorrido;
     }
 
@@ -54,9 +58,7 @@ public class RecorridoCodigo implements Runnable{
             Iterator<String> it = recorrido.iterator();
             while(it.hasNext()){
                 String code = it.next();
-                System.out.println("Codigo: "+code);
                 for(int i = 0; i < code.length(); i++){
-                    System.out.println("Elemento del codigo: "+code.charAt(i));
                     if(code.charAt(i) == '.'){
                         irNodoDerecho();
                         Platform.runLater(new CreadorRecorrido(this.pane, x, y));
@@ -70,7 +72,7 @@ public class RecorridoCodigo implements Runnable{
                 }
             }
         }catch(InterruptedException ex){
-            System.err.println(ex);
+            Logger.getLogger(RecorridoCodigo.class.getName()).log(Level.SEVERE, null, ex);
             Thread.currentThread().interrupt();
         }
         limpiar();
@@ -78,14 +80,14 @@ public class RecorridoCodigo implements Runnable{
     
     private void irNodoDerecho(){
         x += cambio;
-        y += ALTO;
+        y += alto;
         cambio /= 2;
         playSound("/recursos/Punto.mpeg");
     }
     
     private void irNodoIzquierdo(){
         x -= cambio;
-        y += ALTO;
+        y += alto;
         cambio /= 2;
         playSound("/recursos/Raya.mpeg");
     }
@@ -93,13 +95,13 @@ public class RecorridoCodigo implements Runnable{
     private void regresar(String code, int i){
         try{
             if(code.charAt(i) == ' '){
-                this.x = ANCHO;
+                this.x = ancho;
                 this.y = 200;
-                this.cambio = ANCHO/2;
+                this.cambio = ancho/2;
             }
             Thread.sleep(600);
         }catch(InterruptedException ex){
-            System.err.println(ex);
+            Logger.getLogger(RecorridoCodigo.class.getName()).log(Level.SEVERE, null, ex);
             Thread.currentThread().interrupt();
         }
         limpiar();
