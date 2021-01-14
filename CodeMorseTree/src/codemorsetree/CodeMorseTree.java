@@ -61,8 +61,7 @@ public class CodeMorseTree extends Application{
             Parent root = loader.load();
             Scene scene = new Scene (root);
             stage.setScene(scene);
-            stage.setWidth(1280);
-            stage.setHeight(600);
+            stage.setMaximized(true);
             stage.setTitle("Traductor Código Morse");
             stage.show();
         }catch(IOException ex){
