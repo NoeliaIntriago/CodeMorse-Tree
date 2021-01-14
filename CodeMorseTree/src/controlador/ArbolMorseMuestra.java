@@ -31,7 +31,7 @@ public class ArbolMorseMuestra{
     public void dibujar(Pane pane){
         pane.getChildren().clear();
         if (ArbolMorse.getRoot() != null) {
-            dibujar(pane, ArbolMorse.getRoot(), 300, 0, ANCHO/2);
+            dibujar(pane, ArbolMorse.getRoot(), 640, 100, ANCHO/2);
         }
     }
     
