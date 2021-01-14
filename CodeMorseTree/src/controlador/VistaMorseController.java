@@ -47,6 +47,8 @@ public class VistaMorseController implements Initializable {
             System.out.println(palabra);
             LinkedList<String> traduccion = ArbolMorse.codificarPalabra(palabra);
             System.out.println(traduccion);
+            Thread trace = new Thread(new RecorridoCodigo(traduccion, pane));
+            trace.start();
         }
     }
     

@@ -19,9 +19,9 @@ import tda.ArbolMorse.Node;
  * @author Noelia Intriago
  */
 public class ArbolMorseMuestra{
-    public static final int DIAMETRO = 20;
-    public static final int ANCHO = 625;
-    public static final int ALTO = 60;
+    private static final int DIAMETRO = 20;
+    private static final int ANCHO = 650;
+    private static final int ALTO = 60;
     private static ArbolMorse arbol;
 
     public ArbolMorseMuestra() {
@@ -31,7 +31,7 @@ public class ArbolMorseMuestra{
     public void dibujar(Pane pane){
         pane.getChildren().clear();
         if (ArbolMorse.getRoot() != null) {
-            dibujar(pane, ArbolMorse.getRoot(), 640, 100, ANCHO/2);
+            dibujar(pane, ArbolMorse.getRoot(), ANCHO, 200, ANCHO/2);
         }
     }
     
