@@ -38,10 +38,6 @@ public class RecorridoCodigo implements Runnable{
         this.x = ancho;
         this.y = 200;
     }
-
-    public void setX(double x) {
-        this.x = x;
-    }
     
     public List<String> getRecorrido() {
         return recorrido;
