@@ -36,7 +36,6 @@ public class CodeMorseTree extends Application{
     public static void main(String[] args) {
         leerArchivo();
         arbolMorse.crearArbolMorse((HashMap<String, String>) codigos);
-        arbolMorse.anchura();
         launch();
     }
     

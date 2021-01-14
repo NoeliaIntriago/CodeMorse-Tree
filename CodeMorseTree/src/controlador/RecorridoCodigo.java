@@ -25,6 +25,7 @@ public class RecorridoCodigo implements Runnable{
     private int inicio;
     private double ANCHO = 650;
     private double ALTO = 60;
+    private double cambio = ANCHO/2;
     
     public RecorridoCodigo(LinkedList<String> recorrido, Pane pane, int inicio){
         this.recorrido = recorrido;
@@ -34,6 +35,10 @@ public class RecorridoCodigo implements Runnable{
         this.y = 200;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+    
     public LinkedList<String> getRecorrido() {
         return recorrido;
     }
@@ -44,13 +49,14 @@ public class RecorridoCodigo implements Runnable{
     
     @Override
     public void run() {
-        Platform.runLater(new CreadorRecorrido(this.pane, x, y));
         try{
-            Thread.sleep(500);
+            Thread.sleep(600);
             Iterator<String> it = recorrido.iterator();
             while(it.hasNext()){
                 String code = it.next();
+                System.out.println("Codigo: "+code);
                 for(int i = 0; i < code.length(); i++){
+                    System.out.println("Elemento del codigo: "+code.charAt(i));
                     if(code.charAt(i) == '.'){
                         irNodoDerecho();
                         Platform.runLater(new CreadorRecorrido(this.pane, x, y));
@@ -58,9 +64,9 @@ public class RecorridoCodigo implements Runnable{
                         irNodoIzquierdo();
                         Platform.runLater(new CreadorRecorrido(this.pane, x, y));
                     }else{
-                        regresar();
+                        regresar(code, i);
                     }
-                    Thread.sleep(500);
+                    Thread.sleep(600);
                 }
             }
         }catch(InterruptedException ex){
@@ -71,28 +77,32 @@ public class RecorridoCodigo implements Runnable{
     }
     
     private void irNodoDerecho(){
-        x += ANCHO/2;
+        x += cambio;
         y += ALTO;
-        ANCHO /= 2;
+        cambio /= 2;
         playSound("/recursos/Punto.mpeg");
     }
     
     private void irNodoIzquierdo(){
-        x -= ANCHO/2;
+        x -= cambio;
         y += ALTO;
-        ANCHO /= 2;
+        cambio /= 2;
         playSound("/recursos/Raya.mpeg");
     }
     
-    private void regresar(){
+    private void regresar(String code, int i){
         try{
-            x = 650;
-            y = 200;
-            Thread.sleep(500);
+            if(code.charAt(i) == ' '){
+                this.x = ANCHO;
+                this.y = 200;
+                this.cambio = ANCHO/2;
+            }
+            Thread.sleep(600);
         }catch(InterruptedException ex){
             System.err.println(ex);
             Thread.currentThread().interrupt();
         }
+        limpiar();
     }
     
     private void limpiar(){
