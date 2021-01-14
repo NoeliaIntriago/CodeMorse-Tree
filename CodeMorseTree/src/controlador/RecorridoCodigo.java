@@ -46,23 +46,28 @@ public class RecorridoCodigo implements Runnable{
     public void run() {
         Platform.runLater(new CreadorRecorrido(this.pane, x, y));
         try{
-            Thread.sleep(500);
+            Thread.sleep(700);
             Iterator<String> it = recorrido.iterator();
             while(it.hasNext()){
                 String code = it.next();
                 for(int i = 0; i < code.length(); i++){
-                    if(code.charAt(i) == '.')
+                    if(code.charAt(i) == '.'){
                         irNodoDerecho();
-                    else if(code.charAt(i) == '-')
+                        Platform.runLater(new CreadorRecorrido(this.pane, x, y));
+                    }else if(code.charAt(i) == '-'){
                         irNodoIzquierdo();
+                        Platform.runLater(new CreadorRecorrido(this.pane, x, y));
+                    }else{
+                        regresar();
+                        Platform.runLater(new CreadorRecorrido(this.pane, x, y));
+                    }
                 }
-                Platform.runLater(new CreadorRecorrido(this.pane, x, y));
-                Thread.sleep(500);
+                
+                Thread.sleep(700);
             }
         }catch(InterruptedException ex){
             System.err.println(ex);
         }
-        
     }
     
     private void irNodoDerecho(){
@@ -73,11 +78,23 @@ public class RecorridoCodigo implements Runnable{
     }
     
     private void irNodoIzquierdo(){
-        x -= ANCHO;
+        x -= ANCHO/2;
         y += ALTO;
         ANCHO /= 2;
         playSound("/recursos/Raya.mpeg");
     }
+    
+    private void regresar(){
+        try{
+            x = 650;
+            y = 200;
+            Thread.sleep(700);
+        }catch(InterruptedException ex){
+            System.err.println(ex);
+        }
+    }
+    
+    
     
     private void playSound(String audio) {
         Media sonido = new Media(this.getClass().getResource(audio).toExternalForm());
