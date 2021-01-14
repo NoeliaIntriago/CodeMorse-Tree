@@ -23,8 +23,8 @@ public class RecorridoCodigo implements Runnable{
     private double x;
     private double y;
     private int inicio;
-    private int ANCHO = 650;
-    private int ALTO = 60;
+    private double ANCHO = 650;
+    private double ALTO = 60;
     
     public RecorridoCodigo(LinkedList<String> recorrido, Pane pane, int inicio){
         this.recorrido = recorrido;
@@ -65,6 +65,7 @@ public class RecorridoCodigo implements Runnable{
             }
         }catch(InterruptedException ex){
             System.err.println(ex);
+            Thread.currentThread().interrupt();
         }
         limpiar();
     }
@@ -90,6 +91,7 @@ public class RecorridoCodigo implements Runnable{
             Thread.sleep(500);
         }catch(InterruptedException ex){
             System.err.println(ex);
+            Thread.currentThread().interrupt();
         }
     }
     
