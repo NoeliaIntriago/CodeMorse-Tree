@@ -26,8 +26,12 @@ import tda.ArbolMorse;
  */
 
 public class CodeMorseTree extends Application{
-    public static final Map<String, String> codigos = new HashMap<>();
+    protected static final Map<String, String> codigos = new HashMap<>();
     public static final ArbolMorse arbolMorse = new ArbolMorse();
+
+    public static Map<String, String> getCodigos() {
+        return codigos;
+    }
     
     public static void main(String[] args) {
         leerArchivo();

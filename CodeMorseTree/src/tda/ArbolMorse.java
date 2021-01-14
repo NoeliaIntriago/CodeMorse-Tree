@@ -5,10 +5,9 @@
  */
 package tda;
 
-import static codemorsetree.CodeMorseTree.codigos;
+import codemorsetree.CodeMorseTree;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
@@ -83,10 +82,10 @@ public class ArbolMorse {
     }
     
     public static LinkedList<String> codificarPalabra(String palabra){
-        return codificarPalabra(codigos, palabra, root);
+        return codificarPalabra(CodeMorseTree.getCodigos(), palabra);
     }
     
-    private static LinkedList<String> codificarPalabra(Map<String, String> morseCodes, String palabra, Node n){
+    private static LinkedList<String> codificarPalabra(Map<String, String> morseCodes, String palabra){
         LinkedList<String> traduccion = new LinkedList<>();
         for(int i = 0; i < palabra.length(); i++){
             String code = morseCodes.get(String.valueOf(palabra.charAt(i)));
