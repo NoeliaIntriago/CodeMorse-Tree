@@ -43,8 +43,6 @@ public class VistaMorseController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(pane.getWidth());
-        System.out.println(pane.getHeight());
         ArbolMorseMuestra arbolMuestra = new ArbolMorseMuestra();
         arbolMuestra.dibujar(pane);
     } 
@@ -58,26 +56,6 @@ public class VistaMorseController implements Initializable {
             System.out.println(traduccion);
         }
     }
-    
-    /*public void dibujar(){
-        System.out.println(pane.getWidth());
-        System.out.println(pane.getHeight());
-        pane.setStyle("-fx-background-color: white;");
-        dibujarArbol(pane, pane.getWidth()/2, 20, ArbolMorse.getRoot());
-        /*Circle circle = new Circle(50, Paint.valueOf("BLUE"));
-        circle.relocate(20, 20);
-        Rectangle rectangle = new Rectangle(100,100, Paint.valueOf("RED"));
-        rectangle.relocate(70,70);
-        pane.getChildren().addAll(circle,rectangle);
-    }
-    
-    private void dibujarArbol(Pane pane, double x, double y, Node n){
-        if(n != null){
-            Circle circle = new Circle(x, y, RADIO, Paint.valueOf("WHITE"));
-            circle.setStroke(Paint.valueOf("BLACK"));
-            pane.getChildren().addAll(circle, new Text(x - 4, y + 4, n.getData()));
-        }
-    }*/
     
     public void borrarTexto(ActionEvent event){
         txtPalabra.clear();

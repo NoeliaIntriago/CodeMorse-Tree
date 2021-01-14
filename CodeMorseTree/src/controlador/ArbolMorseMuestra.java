@@ -20,8 +20,8 @@ import tda.ArbolMorse.Node;
  */
 public class ArbolMorseMuestra{
     public static final int DIAMETRO = 20;
-    public static final int RADIO = DIAMETRO/2;
-    public static final int ANCHO = 50;
+    public static final int ANCHO = 625;
+    public static final int ALTO = 60;
     private static ArbolMorse arbol;
 
     public ArbolMorseMuestra() {
@@ -31,23 +31,23 @@ public class ArbolMorseMuestra{
     public void dibujar(Pane pane){
         pane.getChildren().clear();
         if (ArbolMorse.getRoot() != null) {
-            dibujar(pane, ArbolMorse.getRoot(), pane.getWidth(), ANCHO);
+            dibujar(pane, ArbolMorse.getRoot(), 300, 0, ANCHO/2);
         }
     }
     
-    private void dibujar(Pane pane, Node n, double x, double y) {
+    private void dibujar(Pane pane, Node n, double x, double y, double cambio) {
         Circle circle = new Circle(x, y, DIAMETRO);
         circle.setFill(Color.WHITE);
         if (n.getLeft() != null) {
-            pane.getChildren().add(new Line(x - ANCHO, y + ANCHO, x, y));
-            dibujar(pane, n.getLeft(), x - ANCHO, y + ANCHO);
+            pane.getChildren().add(new Line(x - cambio, y + ALTO, x, y));
+            dibujar(pane, n.getLeft(), x - cambio, y + ALTO, cambio/2);
         }
         if (n.getRight() != null) {
-            pane.getChildren().add(new Line(x + ANCHO, y + ANCHO, x, y));
-            dibujar(pane, n.getRight(), x + ANCHO, y + ANCHO);
+            pane.getChildren().add(new Line(x + cambio, y + ALTO, x, y));
+            dibujar(pane, n.getRight(), x + cambio, y + ALTO, cambio/2);
         }
         circle.setStroke(Color.BLACK);
-        pane.getChildren().addAll(circle, new Text(x - 4, y + 4, n.getData()));
+        pane.getChildren().addAll(circle, new Text(x - 5, y + 5, n.getData()));
     }
     
 }
